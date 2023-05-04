@@ -40,7 +40,7 @@ This will run the web application - it should now be available at https://127.0.
 GUI:
 <img width="500" alt="main_map" src="https://user-images.githubusercontent.com/91216718/234443109-bcd688c0-1e7c-41f0-92db-34ba3be9bf87.png">
 
-<img width="845" alt="county_emissions" src="https://user-images.githubusercontent.com/91216718/234489908-69c29a08-3b4c-473c-9e0a-9857c8cbcc73.png">
+<img width="500" alt="county_emissions" src="https://user-images.githubusercontent.com/91216718/234489908-69c29a08-3b4c-473c-9e0a-9857c8cbcc73.png">
 
 
 <img width="500" alt="Screen Shot 2023-04-29 at 6 53 42 PM" src="https://user-images.githubusercontent.com/91216718/235327297-c168c7ed-4707-4a5a-9cdb-e97ab92b36e7.png">
