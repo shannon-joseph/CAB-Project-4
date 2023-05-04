@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <script src="https://d3js.org/d3.v5.min.js"></script>
+        <script src="https://d3js.org/topojson.v1.min.js"></script>
+        <title>Document</title>
+        <link rel="stylesheet" href="/styles.css" />
+    </head>
+    <body onload="loadMap('{{ county }}', '{{ mun }}')">
+        <div id="statBtnCtr">
+            <button class="stat-btn" id="ev">
+                EV Adoption
+                <span></span>
+            </button>
+            <button class="stat-btn" id="ghgTotal">
+                GHG Emissions
+                <span></span>
+            </button>
+            <button class="stat-btn" id="ghgVehicles">
+                GHG Emissions (Vehicles)
+                <span></span>
+            </button>
+        </div>
+        <div id="main">
+            <div
+                id="ctr"
+                style="{% if info is not none %}flex-basis: 60%{% endif %}">
+                <div id="svganchor"></div>
+                <div id="tooltip"></div>
+            </div>
+            {% if info is not none %}
+                <div id="info">
+     		    {% for line in info.split('\n') %}
+		        <p>{{ line }}</p>
+		    {% endfor %}
+		</div>
+            {% endif %}
+        </div>
+        {% if county != '' %}
+        <a href="/" class="back">Back to state map</a>
+        <a href="/" class="backSmall">State</a>
+        {% if mun != '' %}
+        <a href="/county/{{ county }}" class="back" id="countyBack">
+            Back to county map
+        </a>
+        <a href="/county/{{ county }}" class="backSmall" id="countyBackSmall">
+            {{ county }} County
+        </a>
+        {% endif %} {% endif %}
+        <script src="/script.js" defer></script>
+        <script>
+            window.evNorm = {};
+            {% for key, value in evNorm.items() %}
+                window.evNorm['{{ key }}'] = {{ value if value is not none else 0 }};
+            {% endfor %}
+            window.ghgTotalNorm = {};
+            {% for key, value in ghgTotalNorm.items() %}
+                window.ghgTotalNorm['{{ key }}'] = {{ value if value is not none else 0 }};
+            {% endfor %}
+            window.ghgVehiclesNorm = {};
+            {% for key, value in ghgVehiclesNorm.items() %}
+                window.ghgVehiclesNorm['{{ key }}'] = {{ value if value is not none else 0 }};
+            {% endfor %}
+        </script>
+    </body>
+</html>

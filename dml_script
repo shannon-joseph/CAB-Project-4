@@ -1,0 +1,340 @@
+Script started on 2023-04-10 18:37:55-04:00 [TERM="xterm-256color" TTY="/dev/pts/0" COLUMNS="155" LINES="24"]
+]0;lion@roscoe:~/cab-project-4[?2004h[01;32m[lion@roscoe[01;37m cab-project-4[01;32m]$[00m psql sua[Kstainability
+[?2004lpsql (15.1)
+Type "help" for help.
+
+[?2004hsustainability=# [7mSELECT [27m
+[7m    mun_name, [27m
+[7m    county, [27m
+[7m    ([27m
+[7m        Avg_EV_change / [27m
+[7m        (1.0 * ([27m
+[7m            SELECT MAX(Avg_EV_change) [27m
+[7m            FROM Mun_EV_Average [27m
+[7m            WHERE county = 'Middlesex'[27m
+[7m        ))[27m
+[7m    ) AS normalized [27m
+[7mFROM Mun_EV_Average [27m
+[7mWHERE county = 'Middlesex' [27m
+[7mORDER BY Avg_EV_change DESC;[27m[A[A[A[A[A[A[A[A[A[A[A[A[ASELECT 
+    mun_name, 
+    county, 
+    (
+        Avg_EV_change / 
+        (1.0 * (
+            SELECT MAX(Avg_EV_change) 
+            FROM Mun_EV_Average 
+            WHERE county = 'Middlesex'
+        ))
+    ) AS normalized 
+FROM Mun_EV_Average 
+WHERE county = 'Middlesex' 
+ORDER BY Avg_EV_change DESC;
+[?2004l         mun_name         |  county   |       normalized        
+--------------------------+-----------+-------------------------
+ South Brunswick township | Middlesex | 1.000000000000000000000
+ Plainsboro township      | Middlesex | 0.996539400336231986990
+ Cranbury township        | Middlesex | 0.919198871589740395488
+ Monroe township          | Middlesex | 0.895152523600399586837
+ Edison township          | Middlesex | 0.700738233317268656602
+ Dunellen borough         | Middlesex | 0.697710459642068647796
+ Jamesburg borough        | Middlesex | 0.687701060168369187364
+ East Brunswick township  | Middlesex | 0.683559518364305254610
+ Piscataway township      | Middlesex | 0.545244176874287137155
+ Metuchen borough         | Middlesex | 0.543868829962478241820
+ Highland Park borough    | Middlesex | 0.499843395189657295961
+ North Brunswick township | Middlesex | 0.497157071961982101891
+ Milltown borough         | Middlesex | 0.382948589068333651608
+ Helmetta borough         | Middlesex | 0.334612956034987808479
+ Old Bridge township      | Middlesex | 0.305142576009746132848
+ South Plainfield borough | Middlesex | 0.294537666375598978881
+ Sayreville borough       | Middlesex | 0.293535816846428899577
+ Woodbridge township      | Middlesex | 0.273922030622672008006
+ Spotswood borough        | Middlesex | 0.261418902086262990855
+ South Amboy city         | Middlesex | 0.243689498684167023264
+ New Brunswick city       | Middlesex | 0.185152159362126349585
+[7m--More--[27m South River borough      | Middlesex | 0.179561644018240979481
+[7m--More--[27m Middlesex borough        | Middlesex | 0.155060716341651379261
+[7m--More--[27m Carteret borough         | Middlesex | 0.124158612011661061778
+[7m--More--[27m Perth Amboy city         | Middlesex | 0.105400265523575287482
+[7m--More--[27m(25 rows)
+[7m--More--[27m[K[?2004hsustainability=# [7mSELECT [27m
+[7m    county, [27m
+[7m    ([27m
+[7m        County_avg / [27m
+[7m        (1.0 * ([27m
+[7m            SELECT MAX(County_avg) [27m
+[7m            FROM County_EV_Average[27m
+[7m        ))[27m
+[7m    ) AS normalized [27m
+[7mFROM County_EV_Average [27m
+[7mORDER BY County_avg DESC;[27m[A[A[A[A[A[A[A[A[A[ASELECT 
+    county, 
+    (
+        County_avg / 
+        (1.0 * (
+            SELECT MAX(County_avg) 
+            FROM County_EV_Average
+        ))
+    ) AS normalized 
+FROM County_EV_Average 
+ORDER BY County_avg DESC;
+[?2004l   county   |         normalized         
+------------+----------------------------
+ Cape May   |    1.000000000000000000000
+ Mercer     |    0.824365703023873796144
+ Somerset   |    0.745844500617589372706
+ Monmouth   |    0.682693185028932074371
+ Essex      | 0.613534937532371553493261
+ Bergen     |    0.566052940969085568018
+ Sussex     |    0.544351437024970920009
+ Camden     | 0.502400389868566249757077
+ Morris     |    0.499811709721711207179
+ Middlesex  |    0.443127650859878292880
+ Hunterdon  |    0.422899912964450625163
+ Union      | 0.345850789243295014545082
+ Hudson     |    0.320788251738204393027
+ Ocean      |    0.308790299603514648829
+ Burlington |    0.291734283349813882376
+ Gloucester |    0.240065482277133327014
+ Atlantic   |    0.237742924814544720041
+ Passaic    |    0.224776811920526993939
+ Salem      |    0.209760485916271940107
+ Warren     |    0.178493408250285226442
+ Cumberland |    0.124444461286278585108
+(21 rows)
+
+[?2004hsustainability=# [7mSELECT [27m
+[7m    mun_name, [27m
+[7m    county, [27m
+[7m    ([27m
+[7m        Avg_em_vehicle_change / [27m
+[7m        (1.0 * ([27m
+[7m            SELECT MAX(Avg_em_vehicle_change) [27m
+[7m            FROM Mun_GHG_Average [27m
+[7m            WHERE county = 'Middlesex'[27m
+[7m        ))[27m
+[7m    ) AS normalized [27m
+[7mFROM Mun_GHG_Average [27m
+[7mWHERE county = 'Middlesex' [27m
+[7mORDER BY Avg_em_vehicle_change DESC;[27m[A[A[A[A[A[A[A[A[A[A[A[A[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[CSELECT 
+    mun_name, 
+    county, 
+    (
+        Avg_em_vehicle_change / 
+        (1.0 * (
+            SELECT MAX(Avg_em_vehicle_change) 
+            FROM Mun_GHG_Average 
+            WHERE county = 'Middlesex'
+        ))
+    ) AS normalized 
+FROM Mun_GHG_Average 
+WHERE county = 'Middlesex' 
+ORDER BY Avg_em_vehicle_change DESC;
+[?2004l         mun_name         |  county   |       normalized       
+--------------------------+-----------+------------------------
+ Edison township          | Middlesex | 1.00000000000000000000
+ Woodbridge township      | Middlesex | 0.85364067363467434368
+ Piscataway township      | Middlesex | 0.57375621842093986295
+ Old Bridge township      | Middlesex | 0.41014308698582375330
+ New Brunswick city       | Middlesex | 0.39130570283252239021
+ South Brunswick township | Middlesex | 0.38797882328192382459
+ East Brunswick township  | Middlesex | 0.37822218413148575948
+ North Brunswick township | Middlesex | 0.33861517664795459238
+ Sayreville borough       | Middlesex | 0.30682477785092930576
+ South Plainfield borough | Middlesex | 0.30532300728095770500
+ Perth Amboy city         | Middlesex | 0.26391036903430893232
+ Monroe township          | Middlesex | 0.20693268717593115619
+ Carteret borough         | Middlesex | 0.20597241105271974351
+ Middlesex borough        | Middlesex | 0.14488677312161809448
+ Plainsboro township      | Middlesex | 0.09554650034866009342
+ Metuchen borough         | Middlesex | 0.09340973988788338002
+ Cranbury township        | Middlesex | 0.09310782751648831112
+ South River borough      | Middlesex | 0.09148723981970961873
+ Milltown borough         | Middlesex | 0.07094940727784119020
+ Highland Park borough    | Middlesex | 0.06957814076518229664
+ Spotswood borough        | Middlesex | 0.04979216741917513644
+[7m--More--[27m South Amboy city         | Middlesex | 0.04922729911140371722
+[7m--More--[27m Jamesburg borough        | Middlesex | 0.03935184283415856048
+[7m--More--[27m Dunellen borough         | Middlesex | 0.03380249866574210061
+[7m--More--[27m Helmetta borough         | Middlesex | 0.01232192039642068275
+[7m--More--[27m(25 rows)
+[7m--More--[27m[K[?2004hsustainability=# [7mSELECT [27m
+[7m    mun_name, [27m
+[7m    county, [27m
+[7m    ([27m
+[7m        Avg_em_change / [27m
+[7m        (1.0 * ([27m
+[7m            SELECT MAX(Avg_em_change) [27m
+[7m            FROM Mun_GHG_Average [27m
+[7m            WHERE county = 'Middlesex'[27m
+[7m        ))[27m
+[7m    ) AS normalized [27m
+[7mFROM Mun_GHG_Average [27m
+[7mWHERE county = 'Middlesex' [27m
+[7mORDER BY Avg_em_change DESC;[27m[A[A[A[A[A[A[A[A[A[A[A[A[ASELECT 
+    mun_name, 
+    county, 
+    (
+        Avg_em_change / 
+        (1.0 * (
+            SELECT MAX(Avg_em_change) 
+            FROM Mun_GHG_Average 
+            WHERE county = 'Middlesex'
+        ))
+    ) AS normalized 
+FROM Mun_GHG_Average 
+WHERE county = 'Middlesex' 
+ORDER BY Avg_em_change DESC;
+[?2004l         mun_name         |  county   |       normalized       
+--------------------------+-----------+------------------------
+ Woodbridge township      | Middlesex | 1.00000000000000000000
+ Edison township          | Middlesex | 0.45130924673177734757
+ Piscataway township      | Middlesex | 0.27608117808278772323
+ Sayreville borough       | Middlesex | 0.22601657494616405281
+ New Brunswick city       | Middlesex | 0.20192634807386944511
+ South Brunswick township | Middlesex | 0.18603702173014595523
+ Perth Amboy city         | Middlesex | 0.16899440976225175647
+ Old Bridge township      | Middlesex | 0.16555108433210797642
+ East Brunswick township  | Middlesex | 0.14625932612620451134
+ Monroe township          | Middlesex | 0.13962934766058338590
+ North Brunswick township | Middlesex | 0.12513997346268461923
+ Carteret borough         | Middlesex | 0.12393970373915124095
+ South Plainfield borough | Middlesex | 0.11523850955995910643
+ Plainsboro township      | Middlesex | 0.06857111783003067018
+ Metuchen borough         | Middlesex | 0.05616122506688708590
+ Middlesex borough        | Middlesex | 0.05114828268766449873
+ Cranbury township        | Middlesex | 0.04310747612729210624
+ South River borough      | Middlesex | 0.03198660083092249799
+ Highland Park borough    | Middlesex | 0.03019076414417157897
+ Spotswood borough        | Middlesex | 0.02660170099841211146
+ South Amboy city         | Middlesex | 0.02260631240075696605
+[7m--More--[27m Milltown borough         | Middlesex | 0.02103626041372109717
+[7m--More--[27m Jamesburg borough        | Middlesex | 0.01491179605420572945
+[7m--More--[27m Dunellen borough         | Middlesex | 0.01472211950492680486
+[7m--More--[27m Helmetta borough         | Middlesex | 0.00476540578165444935
+[7m--More--[27m(25 rows)
+[7m--More--[27m[K
+[7m--More--[K(END)[27m[K[?2004hsustainability=# [7mSELECT [27m
+[7m    county, [27m
+[7m    ([27m
+[7m        County_vehicle_avg / [27m
+[7m        (1.0 * ([27m
+[7m            SELECT MAX(County_vehicle_avg) [27m
+[7m            FROM County_GHG_Average[27m
+[7m        ))[27m
+[7m    ) AS normalized [27m
+[7mFROM County_GHG_Average [27m
+[7mORDER BY County_vehicle_avg DESC;[27m[A[A[A[A[A[A[A[A[A[ASELECT 
+    county, 
+    (
+        County_vehicle_avg / 
+        (1.0 * (
+            SELECT MAX(County_vehicle_avg) 
+            FROM County_GHG_Average
+        ))
+    ) AS normalized 
+FROM County_GHG_Average 
+ORDER BY County_vehicle_avg DESC;
+[?2004l   county   |       normalized       
+------------+------------------------
+ Middlesex  | 1.00000000000000000000
+ Mercer     | 0.96819067271148063049
+ Essex      | 0.86485260631254938021
+ Union      | 0.74020210105339561400
+ Passaic    | 0.73594872576928290633
+ Hudson     | 0.72528542165589745907
+ Somerset   | 0.50696250967363886253
+ Morris     | 0.48318848874630357869
+ Atlantic   | 0.39743713159912746073
+ Bergen     | 0.39126985842099208501
+ Gloucester | 0.37269930564969198560
+ Ocean      | 0.37059289674436140858
+ Camden     | 0.35340865921273494194
+ Monmouth   | 0.34420285839408507674
+ Burlington | 0.32035926227162502071
+ Cumberland | 0.22466869355848615818
+ Cape May   | 0.17922493711686472972
+ Salem      | 0.15633375004393033151
+ Sussex     | 0.12075068154775352823
+ Hunterdon  | 0.11515289494142686729
+ Warren     | 0.10065067100447336316
+(21 rows)
+
+[?2004hsustainability=# [7mSELECT [27m
+[7m    county, [27m
+[7m    ([27m
+[7m        County_total_avg / [27m
+[7m        (1.0 * ([27m
+[7m            SELECT MAX(County_total_avg) [27m
+[7m            FROM County_GHG_Average[27m
+[7m        ))[27m
+[7m    ) AS normalized [27m
+[7mFROM County_GHG_Average [27m
+[7mORDER BY County_total_avg DESC;[27m[A[A[A[A[A[A[A[A[A[ASELECT 
+    county, 
+    (
+        County_total_avg / 
+        (1.0 * (
+            SELECT MAX(County_total_avg) 
+            FROM County_GHG_Average
+        ))
+    ) AS normalized 
+FROM County_GHG_Average 
+ORDER BY County_total_avg DESC;
+[?2004l   county   |       normalized       
+------------+------------------------
+ Middlesex  | 1.00000000000000000000
+ Union      | 0.75751988468960605253
+ Hudson     | 0.72976897637938007300
+ Mercer     | 0.72135353671731576648
+ Essex      | 0.70582415317333802367
+ Passaic    | 0.56165569939496734343
+ Somerset   | 0.38830119846587367177
+ Ocean      | 0.37151136446741732603
+ Atlantic   | 0.33281555445815703541
+ Morris     | 0.33235707035978752306
+ Gloucester | 0.31066635905605029434
+ Bergen     | 0.29853077896531392515
+ Camden     | 0.27570859807202270994
+ Cumberland | 0.27387225923059551778
+ Monmouth   | 0.25189377535431425354
+ Burlington | 0.23459753327070171787
+ Cape May   | 0.14862995685169246002
+ Warren     | 0.14108068644864250017
+ Hunterdon  | 0.12500403888814602331
+ Salem      | 0.12467273887054320210
+ Sussex     | 0.10875330835725773437
+(21 rows)
+
+[?2004hsustainability=# [7mSELECT * FROM EV_Datum WHERE county = 'Mercer' AND mun_name = 'Ewing';[27m[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[CSELECT * FROM EV_Datum WHERE county = 'Mercer' AND mun_name = 'Ewing';
+[?2004l mun_name | county | year | num_ev | num_vehicles 
+----------+--------+------+--------+--------------
+(0 rows)
+
+[?2004hsustainability=# SELECT * FROM EV_Datum WHERE county = 'Mercer' AND mun_name = 'Ewing'; ';t';o';w';n';s';h';i';p';
+[?2004l    mun_name    | county | year | num_ev | num_vehicles 
+----------------+--------+------+--------+--------------
+ Ewing township | Mercer | 2015 |     12 |        21607
+ Ewing township | Mercer | 2020 |     72 |        22138
+(2 rows)
+
+[?2004hsustainability=# [7mSELECT * FROM Generalized_GHG_Datum WHERE county = 'Mercer' AND mun_name = 'Ewing';[27m[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[CSELECT * FROM Generalized_GHG_Datum WHERE county = 'Mercer' AND mun_name = 'Ewing'; ';t';o';n';[1P';w';n';s';h';i';p';
+[?2004l    mun_name    | county | year | em_vehicles | em_total 
+----------------+--------+------+-------------+----------
+ Ewing township | Mercer | 2015 |      131506 |   386694
+ Ewing township | Mercer | 2020 |      166682 |   373007
+(2 rows)
+
+[?2004hsustainability=# [7mSELECT * FROM Vehicle_GHG_Datum WHERE county = 'Mercer' AND mun_name = 'Ewing';[27m[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[CSELECT * FROM Vehicle_GHG_Datum WHERE county = 'Mercer' AND mun_name = 'Ewing'; ';t';o';w';n';s';h';i';p';
+[?2004l    mun_name    | county | year | em_total  |  mpo  | school_bus | passenger_car | light_comm_truck | motorcycle 
+----------------+--------+------+-----------+-------+------------+---------------+------------------+------------
+ Ewing township | Mercer | 2015 | 131505.92 | DVRPC | 884.00     | 52828.96      | 10828.26         | 547.29
+ Ewing township | Mercer | 2019 | 166681.80 | DVRPC | 1862.81    | 57409.61      | 6998.63          | 1074.24
+(2 rows)
+
+[?2004hsustainability=# \q
+[?2004l]0;lion@roscoe:~/cab-project-4[?2004h[01;32m[lion@roscoe[01;37m cab-project-4[01;32m]$[00m exit
+[?2004lexit
+
+Script done on 2023-04-10 18:40:52-04:00 [COMMAND_EXIT_CODE="0"]
